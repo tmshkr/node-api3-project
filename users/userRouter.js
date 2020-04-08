@@ -66,8 +66,18 @@ router.delete("/:id", validateUserId, (req, res, next) => {
     });
 });
 
-router.put("/:id", validateUserId, (req, res) => {
-  // do your magic!
+router.put("/:id", validateUserId, validateUser, (req, res, next) => {
+  const { user } = req;
+  const { name } = req.body;
+  Users.update(user.id, { ...user, name })
+    .then(() => res.send())
+    .catch((err) => {
+      console.error(err);
+      next({
+        code: 500,
+        message: "There was a problem updating the user",
+      });
+    });
 });
 
 //custom middleware
