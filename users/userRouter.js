@@ -33,7 +33,7 @@ router.get("/", (req, res, next) => {
     });
 });
 
-router.get("/:id", validateUserId, (req, res) => {
+router.get("/:id", validateUserId, (req, res, next) => {
   Users.getById(req.params.id)
     .then((user) => res.json(user))
     .catch((err) => {
@@ -42,7 +42,7 @@ router.get("/:id", validateUserId, (req, res) => {
     });
 });
 
-router.get("/:id/posts", validateUserId, (req, res) => {
+router.get("/:id/posts", validateUserId, (req, res, next) => {
   Users.getUserPosts(req.params.id)
     .then((posts) => res.json(posts))
     .catch((err) => {
@@ -54,7 +54,7 @@ router.get("/:id/posts", validateUserId, (req, res) => {
     });
 });
 
-router.delete("/:id", validateUserId, (req, res) => {
+router.delete("/:id", validateUserId, (req, res, next) => {
   Users.remove(req.params.id)
     .then(() => res.status(204).send())
     .catch((err) => {
