@@ -3,8 +3,14 @@ const db = require("./userDb");
 
 const router = express.Router();
 
-router.post("/", validateUser, (req, res) => {
-  res.json({ api: "/api/users" });
+router.post("/", validateUser, (req, res, next) => {
+  const { name } = req.body;
+  db.insert({ name })
+    .then((user) => res.status(201).json(user))
+    .catch((err) => {
+      console.error(err);
+      next({ code: 500, message: "There was a problem creating the user" });
+    });
 });
 
 router.post("/:id/posts", validateUserId, validatePost, (req, res) => {
