@@ -1,11 +1,12 @@
 const express = require("express");
-const db = require("./userDb");
+const Users = require("./userDb");
+const Posts = require("../posts/postDb");
 
 const router = express.Router();
 
 router.post("/", validateUser, (req, res, next) => {
   const { name } = req.body;
-  db.insert({ name })
+  Users.insert({ name })
     .then((user) => res.status(201).json(user))
     .catch((err) => {
       console.error(err);
@@ -14,7 +15,13 @@ router.post("/", validateUser, (req, res, next) => {
 });
 
 router.post("/:id/posts", validateUserId, validatePost, (req, res) => {
-  res.json({ api: "/api/users/:id/posts" });
+  const { text } = req.body;
+  Posts.insert({ text, user_id: req.params.id })
+    .then((post) => res.status(201).json(post))
+    .catch((err) => {
+      console.error(err);
+      next({ code: 500, message: "There was a problem creating the post" });
+    });
 });
 
 router.get("/", (req, res) => {
@@ -41,7 +48,7 @@ router.put("/:id", validateUserId, (req, res) => {
 
 async function validateUserId(req, res, next) {
   const { id } = req.params;
-  const user = await db.getById(id);
+  const user = await Users.getById(id);
   if (!user) return next({ code: 400, message: "invalid user id" });
   req.user = user;
   next();
