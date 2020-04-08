@@ -10,6 +10,7 @@ import "./App.scss";
 
 import Users from "./components/Users";
 import UserForm from "./components/UserForm";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -43,9 +44,16 @@ function App() {
           />
           <Route
             exact
-            path="/users/edit/:id"
+            path="/users/:id/edit"
             render={(props) => (
               <UserForm {...props} users={users} getUsers={getUsers} />
+            )}
+          />
+          <Route
+            exact
+            path="/users/:id"
+            render={(props) => (
+              <UserProfile {...props} users={users} getUsers={getUsers} />
             )}
           />
           <Redirect to="/users" />

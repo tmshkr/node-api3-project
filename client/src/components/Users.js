@@ -35,20 +35,20 @@ function Users(props) {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id}>
+            <tr key={user.id} onClick={() => history.push(`/users/${user.id}`)}>
               <td>{user.id}</td>
               <td>{user.name}</td>
-              <td>
+              <td onClick={(e) => e.stopPropagation()}>
                 <Button
                   size="sm"
                   color="danger"
-                  onClick={() => deleteUser(user.id)}
+                  onClick={(e) => deleteUser(user.id)}
                 >
                   delete
                 </Button>
                 <Button
                   size="sm"
-                  onClick={() => history.push(`/users/edit/${user.id}`)}
+                  onClick={(e) => history.push(`/users/${user.id}/edit`)}
                 >
                   edit
                 </Button>
