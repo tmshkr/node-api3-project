@@ -17,7 +17,12 @@ router.get("/:id", validatePostId, (req, res) => {
 });
 
 router.delete("/:id", validatePostId, (req, res, next) => {
-  res.json({ api: "running..." });
+  Posts.remove(req.post.id)
+    .then((data) => res.status(204).send())
+    .catch((err) => {
+      console.error(err);
+      next({ code: 500, message: "There was a problem deleting the post" });
+    });
 });
 
 router.put("/:id", validatePostId, (req, res, next) => {
