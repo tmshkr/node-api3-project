@@ -14,7 +14,7 @@ router.post("/", validateUser, (req, res, next) => {
     });
 });
 
-router.post("/:id/posts", validateUserId, validatePost, (req, res) => {
+router.post("/:id/posts", validateUserId, validatePost, (req, res, next) => {
   const { text } = req.body;
   Posts.insert({ text, user_id: req.params.id })
     .then((post) => res.status(201).json(post))
