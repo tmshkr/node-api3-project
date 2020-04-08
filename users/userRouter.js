@@ -3,8 +3,8 @@ const db = require("./userDb");
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
-  // do your magic!
+router.post("/", validateUser, (req, res) => {
+  res.json({ api: "/api/users" });
 });
 
 router.post("/:id/posts", validateUserId, (req, res) => {
@@ -12,7 +12,6 @@ router.post("/:id/posts", validateUserId, (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  // do your magic!
   res.json({ api: "/api/users" });
 });
 
@@ -43,7 +42,11 @@ async function validateUserId(req, res, next) {
 }
 
 function validateUser(req, res, next) {
-  // do your magic!
+  if (!Object.keys(req.body).length)
+    return next({ code: 400, message: "missing user data" });
+  const { name } = req.body;
+  if (!name) return next({ code: 400, message: "missing required name field" });
+  next();
 }
 
 function validatePost(req, res, next) {
