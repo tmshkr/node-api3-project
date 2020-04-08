@@ -34,7 +34,12 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", validateUserId, (req, res) => {
-  res.json({ api: "/api/users/:id" });
+  Users.getById(req.params.id)
+    .then((user) => res.json(user))
+    .catch((err) => {
+      console.error(err);
+      next({ code: 500, message: "There was a problem retrieving the user" });
+    });
 });
 
 router.get("/:id/posts", validateUserId, (req, res) => {
