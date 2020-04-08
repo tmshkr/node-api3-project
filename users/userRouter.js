@@ -24,8 +24,13 @@ router.post("/:id/posts", validateUserId, validatePost, (req, res, next) => {
     });
 });
 
-router.get("/", (req, res) => {
-  res.json({ api: "/api/users" });
+router.get("/", (req, res, next) => {
+  Users.get()
+    .then((users) => res.json(users))
+    .catch((err) => {
+      console.error(err);
+      next({ code: 500, message: "There was a problem retrieving the users" });
+    });
 });
 
 router.get("/:id", validateUserId, (req, res) => {
