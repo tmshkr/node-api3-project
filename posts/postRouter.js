@@ -26,7 +26,14 @@ router.delete("/:id", validatePostId, (req, res, next) => {
 });
 
 router.put("/:id", validatePostId, (req, res, next) => {
-  res.json({ api: "running..." });
+  const { post } = req;
+  const { text } = req.body;
+  Posts.update(post.id, { ...post, text })
+    .then((data) => res.json(data))
+    .catch((err) => {
+      console.error(err);
+      next({ code: 500, message: "There was a problem updating the post" });
+    });
 });
 
 // custom middleware
