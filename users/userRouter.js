@@ -55,7 +55,15 @@ router.get("/:id/posts", validateUserId, (req, res) => {
 });
 
 router.delete("/:id", validateUserId, (req, res) => {
-  // do your magic!
+  Users.remove(req.params.id)
+    .then(() => res.status(204).send())
+    .catch((err) => {
+      console.error(err);
+      next({
+        code: 500,
+        message: "There was a problem deleting the user",
+      });
+    });
 });
 
 router.put("/:id", validateUserId, (req, res) => {
