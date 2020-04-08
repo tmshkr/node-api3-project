@@ -35,7 +35,11 @@ function Users(props) {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id} onClick={() => history.push(`/users/${user.id}`)}>
+            <tr
+              className="user"
+              key={user.id}
+              onClick={() => history.push(`/users/${user.id}`)}
+            >
               <td>{user.id}</td>
               <td>{user.name}</td>
               <td onClick={(e) => e.stopPropagation()}>

@@ -10,6 +10,9 @@ div.users-list {
       margin: 0 0 0 1rem;
     }
   }
+  tr.user {
+    cursor: pointer;
+  }
   td button {
     float: right;
     margin: 0 0 0 1rem;
