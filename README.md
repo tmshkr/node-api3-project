@@ -10,12 +10,12 @@ You are allowed, and **encouraged**, to collaborate with other peers. Please fol
 
 ## Project Set Up
 
-- [ ] Create a forked copy of this project.
-- [ ] Add your `Team Lead` as collaborator on Github.
-- [ ] Clone your OWN version of the repository.
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
-- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-- [ ] Push commits: git push origin `<firstName-lastName>`.
+- [x] Create a forked copy of this project.
+- [x] Add your `Team Lead` as collaborator on Github.
+- [x] Clone your OWN version of the repository.
+- [x] Create a new branch: git checkout -b `<firstName-lastName>`.
+- [x] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+- [x] Push commits: git push origin `<firstName-lastName>`.
 
 Follow these steps for completing your project.
 
@@ -32,27 +32,27 @@ Follow these steps for completing your project.
 
 #### Custom Middleware Requirements
 
-- `logger()`
+* `logger()`
 
-  - `logger` logs to the console the following information about each request: request method, request url, and a timestamp
-  - this middleware runs on every request made to the API
+  - [x] `logger` logs to the console the following information about each request: request method, request url, and a timestamp
+  - [x] this middleware runs on every request made to the API
 
-- `validateUserId()`
+* `validateUserId()`
 
-  - `validateUserId` validates the user id on every request that expects a user id parameter
-  - if the `id` parameter is valid, store that user object as `req.user`
-  - if the `id` parameter does not match any user id in the database, cancel the request and respond with status `400` and `{ message: "invalid user id" }`
+  - [x] `validateUserId` validates the user id on every request that expects a user id parameter
+  - [x] if the `id` parameter is valid, store that user object as `req.user`
+  - [x] if the `id` parameter does not match any user id in the database, cancel the request and respond with status `400` and `{ message: "invalid user id" }`
 
-- `validateUser()`
+* `validateUser()`
 
-  - `validateUser` validates the `body` on a request to create a new user
-  - if the request `body` is missing, cancel the request and respond with status `400` and `{ message: "missing user data" }`
-  - if the request `body` is missing the required `name` field, cancel the request and respond with status `400` and `{ message: "missing required name field" }`
+  - [x] `validateUser` validates the `body` on a request to create a new user
+  - [x] if the request `body` is missing, cancel the request and respond with status `400` and `{ message: "missing user data" }`
+  - [x] if the request `body` is missing the required `name` field, cancel the request and respond with status `400` and `{ message: "missing required name field" }`
 
-- `validatePost()`
-  - `validatePost` validates the `body` on a request to create a new post
-  - if the request `body` is missing, cancel the request and respond with status `400` and `{ message: "missing post data" }`
-  - if the request `body` is missing the required `text` field, cancel the request and respond with status `400` and `{ message: "missing required text field" }`
+* `validatePost()`
+  - [x] `validatePost` validates the `body` on a request to create a new post
+  - [x] if the request `body` is missing, cancel the request and respond with status `400` and `{ message: "missing post data" }`
+  - [x] if the request `body` is missing the required `text` field, cancel the request and respond with status `400` and `{ message: "missing required text field" }`
 
 ### Database Persistence Helpers
 
@@ -91,12 +91,11 @@ We have provided test data for the resources.
 
 ## Stretch Goals
 
-- Add the Post Router
+- [x] Add the Post Router
+- [x] Implement all endpoints and middleware within `posts/postRouter.js`
 
-  - Implement all endpoints and middleware within `posts/postRouter.js`
-
-- Create a React App
-  - Use `create-react-app` to create an application inside the root folder, name it `client`.
-  - From the React application connect to the `/api/users` endpoint in the API and show the list of users.
-  - Add functionality to show the details of a user, including their posts, when clicking a user name in the list. Use React Router to navigate to a `/users/:id` route to show the user details.
-  - Add styling!
+- [x] Create a React App
+  - [x] Use `create-react-app` to create an application inside the root folder, name it `client`.
+  - [x] From the React application connect to the `/api/users` endpoint in the API and show the list of users.
+  - [x] Add functionality to show the details of a user, including their posts, when clicking a user name in the list. Use React Router to navigate to a `/users/:id` route to show the user details.
+  - [x] Add styling!
